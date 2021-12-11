@@ -1,5 +1,7 @@
 package com.elnaggar.android
 
+import android.app.ActivityManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+       val activityManager :ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+       val info =  activityManager.getProcessMemoryInfo(arrayOf(android.os.Process.myPid()).toIntArray())
+
 
     }
 
@@ -75,6 +80,34 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         cleanUp()
         super.onDestroy()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        when(level){
+
+            TRIM_MEMORY_BACKGROUND -> {
+                TODO()
+            }
+            TRIM_MEMORY_COMPLETE -> {
+                TODO()
+            }
+            TRIM_MEMORY_MODERATE -> {
+                TODO()
+            }
+            TRIM_MEMORY_RUNNING_CRITICAL -> {
+                TODO()
+            }
+            TRIM_MEMORY_RUNNING_LOW -> {
+                TODO()
+            }
+            TRIM_MEMORY_RUNNING_MODERATE -> {
+                TODO()
+            }
+            TRIM_MEMORY_UI_HIDDEN -> {
+                TODO()
+            }
+        }
+        super.onTrimMemory(level)
     }
 
     private fun cleanUp() {
